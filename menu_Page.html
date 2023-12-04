@@ -1,0 +1,159 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>menu</title>
+    <link rel="stylesheet" href="menuStyle.css">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+      /* Style for Calculate Total button */
+#calculateTotalButton ,#AGE {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#calculateTotalButton:hover {
+    background-color: #ff8533;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <div class="section-title">
+            <h2>50restaurant</h2>
+            <p></p>
+        </div>
+        <form id="menuForm">
+            <div class="menus">
+                <div class="menu-column">
+                    <h4>burger And steak</h4>
+                    <div class="single-menu">
+                        <img src="menu_img\food1.jpg" alt="">
+                        <div class="menu-content">
+                            <h5>spicy burger<span>1.2RO</span></h5>
+                            <input type="number" class="quantity-input" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="single-menu">
+                        <img src="menu_img\food4.jpg" alt="">
+                        <div class="menu-content">
+                            <h5>chicken burger<span>1.1RO</span></h5>
+                            <input type="number" class="quantity-input" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="single-menu">
+                        <img src="menu_img\food2.jpg" alt="">
+                        <div class="menu-content">
+                            <h5>Steak <span>3.6RO</span></h5>
+                            <input type="number" class="quantity-input" value="0" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-column">
+                    <h4>pizza</h4>
+                    <div class="single-menu">
+                        <img src="menu_img\food6.png" alt="">
+                        <div class="menu-content">
+                            <h5>Pepperoni pizza <span>2.5RO</span></h5>
+                            <input type="number" class="quantity-input" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="single-menu">
+                        <img src="menu_img\food7.jpg" alt="">
+                        <div class="menu-content">
+                            <h5>Chicken pizza <span>2.5RO</span></h5>
+                            <input type="number" class="quantity-input" value="0" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-column">
+                    <h4>Drinks</h4>
+                    <div class="single-menu">
+                        <img src="menu_img\drinks1.jpg" alt="">
+                        <div class="menu-content">
+                            <h5>Blueberry Mojito <span>1RO</span></h5>
+                            <input type="number" class="quantity-input" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="single-menu">
+                        <img src="menu_img\drinks2.jpg" alt="">
+                        <div class="menu-content">
+                            <h5>Strawberry mojito <span>1RO</span></h5>
+                            <input type="number" class="quantity-input" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="single-menu">
+                        <img src="menu_img\drinks3.jpg" alt="">
+                        <div class="menu-content">
+                            <h5>Mixed fruit mojito <span>1RO</span></h5>
+                            <input type="number" class="quantity-input" value="0" min="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+                <label id="AGE">Are you older than 60? <input type="checkbox" id="ageCheckbox"></label><br>
+                
+          
+
+            <button type="button" id="calculateTotalButton">Calculate Total Price</button>
+            <p id="totalPriceDisplay"></p>
+        </form>
+    </div>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const calculateTotalButton = document.getElementById('calculateTotalButton');
+        calculateTotalButton.addEventListener('click', function () {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            let totalPrice = 0;
+            let selectedItemsCount = 0;
+            let itemDetails = ''; // To store item details
+
+            quantityInputs.forEach(input => {
+                const menuItem = input.parentElement.querySelector('h5').innerText; // Extracting item name only
+                const price = parseFloat(input.parentElement.querySelector('span').innerText); // Price per item
+                const quantity = parseInt(input.value);
+                const itemTotal = price * quantity;
+
+                if (quantity > 0) {
+                    selectedItemsCount++; // Increment count for each selected item
+                    totalPrice += itemTotal;
+
+                    // Adding details for each item with quantity > 0
+                    itemDetails += `${menuItem} : ${quantity} X ${price.toFixed(2)}RO = ${(itemTotal).toFixed(2)}RO<br><br>`; // Adding extra padding
+                }
+            });
+
+            // Apply discount if checkbox is checked and age is over 60
+            const ageCheckbox = document.getElementById('ageCheckbox');
+                if (ageCheckbox.checked) {
+                    totalPrice *= 0.9; // Apply 10% discount
+                }
+
+            const totalPriceDisplay = document.getElementById('totalPriceDisplay');
+            totalPriceDisplay.innerHTML = `Total Items Selected: ${selectedItemsCount}<br><br>Details:<br>${itemDetails}<div style= padding: 10px; color: white;">Total Price: ${totalPrice.toFixed(2)}RO</div>`;
+            totalPriceDisplay.style.fontWeight = 'bold';
+            totalPriceDisplay.style.fontSize = '1.2em';
+            totalPriceDisplay.style.color = '#ff6600';
+        });
+    });
+</script>
+
+</body>
+</html>

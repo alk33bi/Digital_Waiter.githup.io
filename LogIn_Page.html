@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Digital Waiter</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="icon" type="image/x-icon" href="Fivicon\Favicons 2(Dark).png">
+<link rel="stylesheet" href="HeaderStyle.css">
+</head>
+<style>
+  header{
+    background-image:url("BackGround/log_in (2).jpeg");
+    height: 340px;
+    background-repeat: no-repeat;
+    background-size: cover;} 
+
+
+
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%;
+    }
+    .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    }
+
+    #container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set height to occupy full viewport height */
+    }
+
+
+
+</style>
+
+<body >
+      
+<header>
+
+        <ul>
+            <li ><a href="ContactUs_page.html" >Contact Us</a></li>
+            <li ><a href="aboutUs_Page.html" >About Us</a></li>
+            <li ><a href="Questionnaire.html" >Questionnaire</a></li>
+            <li ><a href="Fun_Page.html" >Game</a></li>
+            <li ><a href="LogIn_Page.html" >Log In</a></li>
+            <li ><a href="Home_Page.html" >Home</a></li>
+            <li style="float: left;"><a href="Home_Page.html" ><img  id="logo" src="Fivicon\Favicons 2(Dark).png" style="height: 35px; width: 35px;"> Digital Waiter</a></li>
+    
+    </ul>
+
+   <h1 class="heade">
+    LOG IN
+   </h1>
+   
+</header>      
+<div id="container">
+<div style="border: solid; border-radius: 20px; border-color: rgba(0, 0, 0, 0); padding: 3%; margin: 10%; background-color: rgb(48, 62, 69);">
+  <form id="loginForm" action="">
+      <table>
+          <tr>
+              <td>
+                  <label for="username" style="color: white;">User Name:</label>
+              </td>
+              <td>
+                  <input type="text" class="form-control" placeholder="Enter User Name" name="username" id="username" style="width: 300px;">
+                  <p id="usernameError" style="color: red; display: none;">Username should not contain numbers. Please try again.</p>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <label for="pwd" style="color: white;">Password:</label>
+              </td>
+              <td>
+                  <input type="password" class="form-control" placeholder="Enter password" name="password" id="password" style="width: 300px;">
+                  <p id="passwordError" style="color: red; display: none;">Password should be at least 8 characters long and contain a mix of numbers and letters. Please try again.</p>
+              </td>
+          </tr>
+          <tr>
+              <td colspan="2">
+                  <div class="form-check mb-3">
+                      <label class="form-check-label" style="color: white;">
+                          <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                      </label>
+                  </div>
+              </td>
+          </tr>
+          <tr>
+              <td colspan="2" style="text-align: center;">
+                  <button type="button" class="btn btn-primary" onclick="validateForm()">Log In</button>
+                  <br>
+                  <a href="#" style="color: white;" onclick="openModal()">Forgot Your Password?</a>
+              </td>
+          </tr>
+      </table>
+  </form>
+</div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>Please enter your username and choose a contact method for password recovery:</p>
+      <input type="text" placeholder="Username" id="forgotUsername">
+      <input type="text" placeholder="Email or Phone" id="forgotContact">
+      <button style="background-color: darkgreen;" onclick="initiatePasswordRecovery()">Submit</button>
+      <p id="errorText" style="color: red; display: none;">Please fill in both Username and Email/Phone fields.</p>
+  </div>
+</div>
+
+<script>
+  // Function to validate the form inputs
+  function validateForm() {
+      const usernameInput = document.getElementById('username').value;
+      const passwordInput = document.getElementById('password').value;
+
+      const usernameError = document.getElementById('usernameError');
+      const passwordError = document.getElementById('passwordError');
+
+      // Check if the username contains numbers
+      if (/\d/.test(usernameInput)) {
+          usernameError.style.display = 'block';
+      } else {
+          usernameError.style.display = 'none';
+      }
+
+      // Check if password is less than 8 characters or not mixed with numbers and letters
+      const containsNumber = /\d/.test(passwordInput);
+      const containsLetter = /[a-zA-Z]/.test(passwordInput);
+      if (passwordInput.length < 8 || !(containsNumber && containsLetter)) {
+          passwordError.style.display = 'block';
+      } else {
+          passwordError.style.display = 'none';
+      }
+  }
+
+  // Open the modal
+  function openModal() {
+      document.getElementById('myModal').style.display = 'block';
+  }
+
+  // Close the modal
+  function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+  }
+
+  // Initiate password recovery (dummy function for demonstration)
+  function initiatePasswordRecovery() {
+        const username = document.getElementById('forgotUsername').value;
+        const contactMethod = document.getElementById('forgotContact').value;
+        const errorText = document.getElementById('errorText');
+
+        if (username.trim() === '' || contactMethod.trim() === '') {
+            errorText.style.display = 'block'; // Show error message if fields are empty
+        } else {
+            errorText.style.display = 'none'; // Hide error message if fields are filled
+
+            // Display an alert message with the username and contact method
+            alert(`Password recovery process initiated for ${username} using ${contactMethod}`);
+
+            closeModal(); // Close the modal after initiating the process (You can replace this with your actual logic)
+        }
+    }
+
+</script>
+
+</body>
+</html>

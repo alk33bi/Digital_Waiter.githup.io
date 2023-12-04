@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Waiter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="Fivicon\Favicons 2(Dark).png">
+    <link rel="stylesheet" href="HeaderStyle.css">
+    <style>
+
+header{
+    background-image:url("BackGround/Questionnaire_Page_heder.jpg");
+    height: 340px;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+
+}
+        
+body { font-family: Arial, sans-serif;
+    background-color: rgb(77, 104, 117);}
+
+h1 {text-align: center; margin-bottom: 20px;color: #d1c8c8;}
+
+form { max-width: 600px;  margin: 0 auto;  padding: 20px;
+    color: #d1c8c8;
+    margin-bottom: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(48, 62, 69);
+    border:solid;
+    border-radius: 20px;
+    border-color: rgba(0, 0, 0, 0);
+
+}
+
+label { display: block; margin-bottom: 5px; font-weight: bold;}
+
+input[type="text"],textarea {
+    width: 100%; padding: 8px;
+    margin-bottom: 15px; border: 2px solid rgb(77, 104, 117);
+    border-radius: 4px;  box-sizing: border-box;}
+
+input[type="radio"], input[type="checkbox"] {margin-right: 5px; }
+
+textarea { height: 100px;resize: vertical;}
+
+input[type="submit"] { padding: 10px 20px; background-color:rgb(77, 104, 117); color: white; border-radius: 5px; font-size: 16px;}
+
+.error-message { color: red; font-size: 0.9em;margin-top: 5px;}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+
+        <ul>
+            <li ><a href="ContactUs_page.html" >Contact Us</a></li>
+            <li ><a href="aboutUs_Page.html" >About Us</a></li>
+            <li ><a href="Questionnaire.html" >Questionnaire</a></li>
+            <li ><a href="Fun_Page.html" >Game</a></li>
+            <li ><a href="LogIn_Page.html" >Log In</a></li>
+            <li ><a href="Home_Page.html" >Home</a></li>
+            <li style="float: left;"><a href="Home_Page.html" ><img  id="logo" src="Fivicon\Favicons 2(Dark).png" style="height: 35px; width: 35px;">  Digital Waiter</a></li>
+    
+    </ul>
+    
+       <h1 class="heade">
+         QUESTIONNAIRE
+       </h1>
+    </header>
+    <hr>
+        <H1>Customer Feedback </H1>
+    <form id="feedbackForm" onsubmit="return validateForm()">
+
+        <label>Name: <input type="text" id="name" name="name" required> </label>
+        <span class="error-message" id="nameError"></span>
+        <label>Gender:</label>
+        <label class="Gender">
+            <label for="male">Male: <input type="radio" name="gender" id="male" value="male" required></label>
+            <label for="female">Female: <input type="radio" name="gender" id="female" value="female"></label>
+        </label>
+        <span class="error-message" id="genderError"></span>
+
+        <label style="padding: 3px;"> Would you recommend us to others? <input type="checkbox" id="recommend" name="recommend"></label>
+        
+        <label>RATE US: </label>
+        <div class="rating-options">
+            <label>POOR <input type="radio" name="Rate" value="Weak" required></label>
+            <label>GOOD <input type="radio" name="Rate" value="GOOD"></label>
+            <label>EXCELLENT <input type="radio" name="Rate" value="EXCELLENT"></label>
+        </div>
+
+        <label >Comments: <textarea  name="comments"></textarea></label>
+        <input type="submit" value="Submit">
+    </form>
+ 
+
+    <script>
+        function validateForm() {
+            // Get form inputs 
+             name = document.getElementById('name').value;
+             gender = document.querySelector('input[name="gender"]:checked');
+             recommend = document.getElementById('recommend');
+
+            // Validate name (accepts only alphabetical characters)
+             nameRegex = /^[A-Za-z]+$/; // spasify allow input 
+            if (!nameRegex.test(name)) { // check user input  
+                document.getElementById('nameError').innerText = "Please enter a valid name"; // if it wrong input return this line
+                return false;}
+
+            // Validate gender (at least one radio button must be checked) 
+            if (!gender) { // cheack if user choose  his gender 
+                document.getElementById('genderError').innerText = "Please select a gender"; // if did not choose return this line 
+                return false; }
+
+            // Custom validation for the checkbox (recommendation)
+            if (recommend.checked) {
+                alert("Thank you for recommending us!"); }
+                 else {alert("Thank you for your feedback!");}
+            return false; }
+    </script>
+
+
+<!--Text-Banner-->
+<div class="text-banner">
+    <marquee behavior="scroll" direction="left">
+      Welcome to The <span id="company-name">website!</span>  Today is <span id="current-date"></span> , and the time is <span id="current-time"></span>
+    </marquee>
+</div>
+
+  <script>
+    //instent varible to save the value of (company-name,current-date,current-time)
+    const companyName = document.getElementById('company-name');
+    const currentDate = document.getElementById('current-date');
+    const currentTime = document.getElementById('current-time');
+  
+    //the Name of Our compony
+    companyName.textContent = "Digital Waiter website!";
+  
+    //function to update the Date and The Time use lambdaexbrechen
+    setInterval(() => {
+      const now = new Date();
+      const date = now.toDateString();
+      const time = now.toLocaleTimeString();
+      currentDate.textContent = date;
+      currentTime.textContent = time;
+    }, 1000);
+  </script>
+
+</body>
+</html>

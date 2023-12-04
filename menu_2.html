@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+             background-color: rgb(99, 123, 134);
+         }
+ 
+         /* Styles for the menu section and items */
+         .menu-section {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 20px;
+             justify-content: center;
+             margin: 20px;
+         }
+ 
+         .menu-item {
+             text-align: center;
+             width: 250px;
+             border: 1px solid #ccc;
+             padding: 10px;
+             border-radius: 5px;
+             background-color: #f9f9f9;
+         }
+ 
+         .menu-item img {
+             width: 100%;
+             height: auto;
+             border-radius: 5px;
+         }
+ 
+         .menu-item h3 {
+             margin-top: 10px;
+             font-size: 1.2em;
+         }
+ 
+         .menu-item .price {
+             font-weight: bold;
+             color: #ff6600;
+             margin-top: 5px;
+         }
+ 
+         /* Style for smaller Add to Basket and Remove from Basket buttons */
+         .basketButtons {
+             display: flex;
+             justify-content: space-around;
+             margin-top: 10px;
+         }
+ 
+         .addToBasketButton,
+         .removeFromBasketButton {
+             padding: 5px 5px; /* Adjust button padding */
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+             font-size: 14px;
+         }
+ 
+         .addToBasketButton {
+             background-color: #ff6600;
+             color: white;
+         }
+ 
+         .removeFromBasketButton {
+             background-color: #dc3545;
+             color: white;
+         }
+ 
+         .addToBasketButton:hover,
+         .removeFromBasketButton:hover {
+             filter: brightness(85%);
+         }
+ 
+         #totalPrice {
+             margin-top: 10px;
+             font-size: 1.2em;
+             font-weight: bold;
+             color: #ff6600;
+         }
+ 
+         /* Style for basket content */
+         #basket {
+             margin-top: 20px;
+         }
+ 
+         #basket h2 {
+             text-align: center;
+         }
+ 
+         #basket ul {
+             list-style-type: none;
+             padding: 0;
+             text-align: left;
+         }
+ 
+         #basket ul li {
+             margin-bottom: 5px;
+         }
+ 
+         #calculateTotalButton {
+             margin-top: 20px;
+             padding: 10px 20px;
+             background-color: #ff6600;
+             color: white;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+             font-size: 16px;
+         }
+ 
+         #calculateTotalButton:hover {
+             background-color: #ff8533;
+         }
+         .menu-item input {
+             margin-bottom: 10px;
+             padding: 5px;
+         }
+ 
+     </style>
+</head>
+<body>
+    <!-- Menu items -->
+    <h1 style="text-align: center;">HATEM BECK RESTAURANT</h1>
+
+    <div class="menu-section">
+
+        <!-- Menu items with images, prices, quantity inputs, and buttons to add/remove items -->
+        <!-- Each item has a dedicated section with buttons for adding to basket and removing from basket -->
+    
+        
+        <div class="menu-item">
+            <img src="https://th.bing.com/th/id/R.f0da3b2e061ccd873ae9d0e07ed0bf07?rik=VVnazUhrsHLNQg&pid=ImgRaw&r=0.jpg" alt="Item 5">
+            <h3>Pizza</h3>
+            <p class="price">3.20 OMR</p>
+            <input type="number" min="0" value="0" id="quantityPizza" placeholder="Quantity">
+            <button class="addToBasketButton" onclick="addToBasket('Pizza', 3.20)">Add to Basket</button>
+            <button class="removeFromBasketButton" onclick="removeFromBasket('Pizza', 3.20)">Remove choise</button>
+        
+        </div>
+
+      
+        <div class="menu-item">
+            <img src="https://th.bing.com/th/id/OIP.1tA3fKeNJTOvWCY_S-wP9gHaE7?rs=1&pid=ImgDetMain.jpg" alt="Item 2">
+            <h3>Pasta</h3>
+            <p class="price">2.2 OMR</p>
+            <input type="number" min="0" value="0" id="quantityPasta" placeholder="Quantity">
+            <button class="addToBasketButton" onclick="addToBasket('Pasta', 2.2 )">Add to Basket</button>
+            <button class="removeFromBasketButton" onclick="removeFromBasket('Pasta', 2.2 )">Remove choise</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="https://th.bing.com/th/id/OIP.o_7iarG1iU2DKOlcgcnmnAHaE8?rs=1&pid=ImgDetMain.jpg" alt="Item 3">
+            <h3>Rice Peryaini</h3>
+            <p class="price">1.5 OMR</p>
+            <input type="number" min="0" value="0" id="quantityRice_Peryaini" placeholder="Quantity">
+            <button class="addToBasketButton" onclick="addToBasket('Rice_Peryaini', 1.5)">Add to Basket</button>
+            <button class="removeFromBasketButton" onclick="removeFromBasket('Rice_Peryaini', 1.5)">Remove choise</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="https://th.bing.com/th/id/OIP.MiiyyeBvox6cfQLGpjKbewHaE7?rs=1&pid=ImgDetMain.jpg" alt="Item 4">
+            <h3>Hot Dog</h3>
+            <p class="price">0.600 OMR</p>
+            <input type="number" min="0" value="0" id="quantityHot_Dog" placeholder="Quantity">
+            <button class="addToBasketButton" onclick="addToBasket('Hot_Dog', 0.600)">Add to Basket</button>
+            <button class="removeFromBasketButton" onclick="removeFromBasket('Hot_Dog', 0.600)">Remove choise</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="https://th.bing.com/th/id/R.1783916534a859e72931328a8b8fc614?rik=ptZrEowokRoa8A&riu=http%3a%2f%2fwww.corvallisadvocate.com%2fwp-content%2fuploads%2f2013%2f06%2fbig-burger.jpg&ehk=K3b3XbLJ2T%2fdMsP%2fTVPY%2fKEYUGjcN031HmNhFMXMtDs%3d&risl=&pid=ImgRaw&r=0.jpg" alt="Item 1">
+            <h3>Burger</h3>
+            <p class="price">1.99 OMR</p>
+            <input type="number" min="0" value="0" id="quantityBurger" placeholder="Quantity">
+            <div class="basketButtons">
+                <button class="addToBasketButton" onclick="addToBasket('Burger', 1.99)">Add to Basket</button>
+                <button class="removeFromBasketButton" onclick="removeFromBasket('Burger', 1.99)">Remove choice</button>
+            </div>
+        </div>
+    </div>
+    <!-- Basket display -->
+    <div id="basket"></div>
+
+
+    <!-- Calculate Total button -->
+    <button id="calculateTotalButton" onclick="calculateTotal()">Calculate Total</button>
+
+   
+   <!-- Check Age checkbox --><br>
+   <label for="ageCheckbox">Are you 60 years or older? </label>
+   <input type="checkbox" id="ageCheckbox" onchange="applyDiscountOnChange(this)">
+   <br>
+
+    <!-- Total Price display (initially hidden) -->
+    <p id="totalPriceDisplay">Total Price: <span id="totalPrice">0.00</span> OMR</p>
+    
+    <script>
+        // Array to store items in the basket with quantities
+        let basketItems = [];
+
+        // Function to add an item with quantity to the basket
+        function addToBasket(itemName, itemPrice) {
+            const quantity = parseFloat(document.getElementById(`quantity${itemName.replace(/\s/g, '')}`).value);
+            if (quantity > 0) {
+                basketItems.push({ name: itemName, price: itemPrice, quantity: quantity });
+                displayBasket(); } }
+
+        // Function to remove an item from the basket
+        function removeFromBasket(itemName, itemPrice) {
+            const index = basketItems.findIndex(item => item.name === itemName && item.price === itemPrice);
+            if (index !== -1) {
+                basketItems.splice(index, 1);
+                displayBasket();} }
+
+        // Function to display the basket
+        function displayBasket() {
+            let basketContent = '<h2>Basket</h2>';
+            let totalPrice = 0;
+            if (basketItems.length === 0) {
+                basketContent += '<p>Your basket is empty.</p>';
+                document.getElementById('totalPriceDisplay').style.display = 'none';} // Hide total price
+                 else {
+                basketContent += '<ul>';
+                basketItems.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    basketContent += `<li>${item.name} - ${item.price} OMR x ${item.quantity} = ${itemTotal.toFixed(2)} OMR</li>`;
+                    totalPrice += itemTotal;}); basketContent += '</ul>';  }
+         document.getElementById('basket').innerHTML = basketContent;}
+
+        // Function to calculate total price
+        function calculateTotal() {
+            let totalPrice = 0;
+            basketItems.forEach(item => {
+                totalPrice += item.price * item.quantity; });
+
+            document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
+            document.getElementById('totalPriceDisplay').style.display = 'block'; // Ensure total price display is visible
+        }
+        // Function to apply discount based on checkbox change
+        function applyDiscountOnChange(checkbox) {
+            if (checkbox.checked) {
+                applyDiscount(); }}
+        // Function to apply discount
+        function applyDiscount() {
+            let totalPrice = parseFloat(document.getElementById('totalPrice').innerText);
+            const discountedPrice = totalPrice * 0.9; // Applying a 10% discount
+            document.getElementById('totalPrice').innerText = discountedPrice.toFixed(2);
+            alert("Congratulations! You've received a 10% discount.");}
+            
+    </script>
+</body>
+</html>
